@@ -34,19 +34,19 @@ This project fine-tunes BART and GPT-2 on the Gretel Synthetic Text-to-SQL datas
 
 ## Table of Contents
 
-1. Overview
-2. Key Features
-3. System Architecture
-4. Dataset
-5. Model Training
-6. Evaluation Metrics
-7. Architectural Comparison
-8. Technologies
-9. Project Structure
-10. Installation
-11. Results
-12. License
-13. Author
+1. [Overview](#-overview)
+2. [System Architecture](#-system-architecture)
+3. [Dataset](#-dataset)
+4. [Model Training](#-model-training)
+5. [Evaluation Metrics](#-evaluation-metrics)
+6. [Architectural Comparison](#-architectural-comparison)
+7. [Transformer Formulation](#-transformer-formulation)
+8. [Technologies](#-technologies)
+9. [Project Structure](#-project-structure)
+10. [Installation](#-installation)
+11. [License](#license)
+12. [Author](#author)
+13. [Support](#-support)
 
 ---
 
@@ -64,21 +64,6 @@ The project provides a complete Text-to-SQL pipeline including:
 * Comparative architectural study
 
 The primary objective is to understand how Transformer architecture influences SQL generation quality.
-
----
-
-# 🎯 Key Features
-
-* End-to-End Text-to-SQL Pipeline
-* BART Fine-Tuning
-* GPT-2 Fine-Tuning
-* Schema-Aware Prompt Engineering
-* SQL Query Generation
-* SQL Normalization
-* Exact Match Evaluation
-* Encoder–Decoder vs Decoder-Only Analysis
-* Error Analysis and Benchmarking
-* Reproducible Research Workflow
 
 ---
 
@@ -143,7 +128,18 @@ Advantages:
 * Effective handling of structured inputs
 
 BART is based on a denoising sequence-to-sequence pretraining strategy combining bidirectional encoding and autoregressive decoding.
+The model is trained by maximizing the conditional likelihood of the target SQL sequence:
 
+```math
+P(Y|X)=\prod_{t=1}^{T} P(y_t \mid y_{<t}, X)
+```
+
+where:
+
+* \(X\) denotes the input question and schema.
+* \(Y\) represents the target SQL query.
+* \(y_t\) is the token generated at step \(t\).
+```
 ---
 
 ## GPT-2 (Decoder-Only)
@@ -158,6 +154,15 @@ SQL:
 
 The model autoregressively generates the SQL query after observing the prompt.
 
+GPT-2 models the probability of a SQL sequence using causal language modeling:
+
+```math
+P(Y)=\prod_{t=1}^{T} P(y_t \mid y_{<t})
+```
+
+where each token is predicted based only on previously generated tokens.
+```
+
 Advantages:
 
 * Simpler architecture
@@ -166,21 +171,50 @@ Advantages:
 
 ---
 
-# 📏 Evaluation Metrics
+# Evaluation Metrics
 
-Model performance is evaluated using:
+Model performance is evaluated using Exact Match (EM).
 
-### Raw Exact Match (EM)
+### Raw Exact Match
 
-Measures exact string equality between generated and reference SQL queries.
+A prediction is considered correct only if the generated SQL query exactly matches the reference query:
 
-### Normalized Exact Match
+```math
+EM = \frac{1}{N}\sum_{i=1}^{N} \mathbf{1}
+\left(
+\hat{y}_i = y_i
+\right)
+```
 
-Evaluates SQL after normalization and formatting to reduce sensitivity to superficial syntax differences.
+where:
+
+* \(N\) is the number of samples.
+* \(y_i\) is the ground-truth SQL query.
+* \(\hat{y}_i\) is the generated SQL query.
 
 ---
 
-# 🔬 Architectural Comparison
+### Cross-Entropy Training Loss
+
+Both BART and GPT-2 are optimized using token-level cross-entropy loss:
+
+```math
+\mathcal{L}
+=
+-\sum_{t=1}^{T}
+\log P(y_t \mid y_{<t}, X)
+```
+
+Lower loss values indicate better alignment between generated SQL tokens and the ground-truth query.
+
+---
+
+### Normalized Exact Match
+
+To reduce sensitivity to formatting differences, SQL queries are normalized before evaluation. This metric measures semantic agreement after standardizing whitespace, capitalization, and formatting variations.
+---
+
+# Architectural Comparison
 
 The project compares BART and GPT-2 across:
 
@@ -197,7 +231,7 @@ The comparison highlights how architectural design influences schema grounding, 
 
 ---
 
-# 🛠 Technologies
+# Technologies
 
 | Component                 | Purpose                        |
 | ------------------------- | ------------------------------ |
