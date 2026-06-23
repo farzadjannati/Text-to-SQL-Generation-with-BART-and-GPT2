@@ -131,7 +131,7 @@ BART is based on a denoising sequence-to-sequence pretraining strategy combining
 The model is trained by maximizing the conditional likelihood of the target SQL sequence:
 
 $$
-P(Y|X)=\prod_{t=1}^{T} P(y_t \mid y_{<t}, X)
+P(Y \mid X)=\prod_{t=1}^{T} P(y_t \mid y_{\lt t}, X)
 $$
 
 where:
@@ -157,7 +157,7 @@ The model autoregressively generates the SQL query after observing the prompt.
 GPT-2 models the probability of a SQL sequence using causal language modeling:
 
 $$
-P(Y)=\prod_{t=1}^{T} P(y_t \mid y_{<t})
+P(Y)=\prod_{t=1}^{T} P(y_t \mid y_{\lt t})
 $$
 
 where each token is predicted based only on previously generated tokens.
@@ -195,7 +195,7 @@ where:
 Both BART and GPT-2 are optimized using token-level cross-entropy loss:
 
 $$
-\mathcal{L}=-\sum_{t=1}^{T}\log P(y_t \mid y_{<t},X)
+\mathcal{L}=-\sum_{t=1}^{T}\log P(y_t \mid y_{\lt t},X)
 $$
 
 Lower loss values indicate better alignment between generated SQL tokens and the ground-truth query.
@@ -316,4 +316,4 @@ If you find this project useful, consider giving it a star ⭐
 <p align="center">
 Built with ❤️ using PyTorch, Transformers
 </p>
-```
+```.
