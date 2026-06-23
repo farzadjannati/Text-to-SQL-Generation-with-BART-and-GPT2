@@ -1,10 +1,10 @@
 <div align="center">
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f172a,50:0891b2,100:06b6d4&height=220&section=header&text=Text-to-SQL%20Generation%20with%20BART%20and%20GPT-2&fontSize=34&fontColor=ffffff&fontAlignY=50&animation=fadeIn" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f172a,50:2563eb,100:7c3aed&height=220&section=header&text=Neural%20Text-to-SQL%20Translation&fontSize=34&fontColor=ffffff&fontAlignY=50&animation=fadeIn" />
 </div>
 
 ---
 
-# Text-to-SQL Generation with BART and GPT-2: A Comparative Study of Encoder–Decoder and Decoder-Only Transformers
+# Neural Text-to-SQL Translation: A Comparative Analysis of Encoder-Decoder and Decoder-Only Architectures
 
 This project investigates the Text-to-SQL task through a comparative study of two influential Transformer architectures: BART (Encoder–Decoder) and GPT-2 (Decoder-Only).
 
@@ -12,11 +12,11 @@ The goal is to transform natural language questions into executable SQL queries 
 
 <div align="left">
 
-[![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=flat\&logo=python\&logoColor=white)](https://www.python.org/)
-[![Transformers](https://img.shields.io/badge/HuggingFace-Transformers-FFB000?style=flat\&logo=huggingface\&logoColor=white)](https://huggingface.co/)
+[![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=flat&logo=python&logoColor=white)](https://www.python.org/)
+[![Transformers](https://img.shields.io/badge/HuggingFace-Transformers-FFB000?style=flat&logo=huggingface&logoColor=white)](https://huggingface.co/)
 [![BART](https://img.shields.io/badge/BART-Encoder_Decoder-2563EB?style=flat)](https://huggingface.co/facebook/bart-base)
 [![GPT2](https://img.shields.io/badge/GPT--2-Decoder_Only-7C3AED?style=flat)](https://huggingface.co/openai-community/gpt2)
-[![PyTorch](https://img.shields.io/badge/PyTorch-Deep_Learning-EE4C2C?style=flat\&logo=pytorch\&logoColor=white)](https://pytorch.org/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-Deep_Learning-EE4C2C?style=flat&logo=pytorch&logoColor=white)](https://pytorch.org/)
 [![Text-to-SQL](https://img.shields.io/badge/NLP-Text_to_SQL-0891B2?style=flat)](#)
 [![SQL](https://img.shields.io/badge/Task-SQL_Generation-0F766E?style=flat)](#)
 [![Dataset](https://img.shields.io/badge/Gretel-Synthetic_Text_to_SQL-14B8A6?style=flat)](https://huggingface.co/datasets/gretelai/synthetic_text_to_sql)
@@ -127,7 +127,7 @@ Advantages:
 * Strong conditional generation
 * Effective handling of structured inputs
 
-BART is based on a denoising sequence-to-sequence pretraining strategy combining bidirectional encoding and autoregressive decoding.
+BART is based on a denoising sequence-to-sequence pretraining strategy combining bidirectional encoding and autoregressive decoding. 
 The model is trained by maximizing the conditional likelihood of the target SQL sequence:
 
 $$
@@ -136,9 +136,9 @@ $$
 
 where:
 
-* \(X\) denotes the input question and schema.
-* \(Y\) represents the target SQL query.
-* \(y_t\) is the token generated at step \(t\).
+* $X$ denotes the input question and schema.
+* $Y$ represents the target SQL query.
+* $y_t$ is the token generated at step $t$.
 
 ---
 
@@ -184,9 +184,9 @@ $$
 
 where:
 
-* \(N\) is the number of samples.
-* \(y_i\) is the ground-truth SQL query.
-* \(\hat{y}_i\) is the generated SQL query.
+* $N$ is the number of samples.
+* $y_i$ is the ground-truth SQL query.
+* $\hat{y}_i$ is the generated SQL query.
 
 ---
 
@@ -205,6 +205,7 @@ Lower loss values indicate better alignment between generated SQL tokens and the
 ### Normalized Exact Match
 
 To reduce sensitivity to formatting differences, SQL queries are normalized before evaluation. This metric measures semantic agreement after standardizing whitespace, capitalization, and formatting variations.
+
 ---
 
 # Architectural Comparison
@@ -315,3 +316,4 @@ If you find this project useful, consider giving it a star ⭐
 <p align="center">
 Built with ❤️ using PyTorch, Transformers
 </p>
+```
