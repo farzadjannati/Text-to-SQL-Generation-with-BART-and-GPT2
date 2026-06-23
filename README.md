@@ -311,7 +311,6 @@ Research Assistant @ Social Networks Lab
 
 If you find this project useful, consider giving it a star ⭐
 
----
 
 <p align="center">
 Built with ❤️ using PyTorch, Transformers
