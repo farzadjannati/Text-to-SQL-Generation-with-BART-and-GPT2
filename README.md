@@ -50,7 +50,7 @@ This project fine-tunes BART and GPT-2 on the Gretel Synthetic Text-to-SQL datas
 
 ---
 
-# 📌 Overview
+# Overview
 
 The project provides a complete Text-to-SQL pipeline including:
 
@@ -98,7 +98,7 @@ E --> A[Architectural Analysis]
 
 ---
 
-# 📚 Dataset
+# Dataset
 
 The experiments are conducted on the Gretel Synthetic Text-to-SQL dataset.
 
@@ -115,7 +115,7 @@ The dataset provides a realistic benchmark for evaluating Text-to-SQL systems ac
 
 ---
 
-# 🤖 Model Training
+# Model Training
 
 ## BART (Encoder–Decoder)
 
@@ -130,9 +130,9 @@ Advantages:
 BART is based on a denoising sequence-to-sequence pretraining strategy combining bidirectional encoding and autoregressive decoding.
 The model is trained by maximizing the conditional likelihood of the target SQL sequence:
 
-```math
-P(Y|X)=\prod_{t=1}^{T} P(y_t \mid y_{<t}, X)
-```
+$$
+P(Y|X)=\prod_{t=1}^{T} P(y_t \mid y_{<t},X)
+$$
 
 where:
 
@@ -156,12 +156,11 @@ The model autoregressively generates the SQL query after observing the prompt.
 
 GPT-2 models the probability of a SQL sequence using causal language modeling:
 
-```math
+$$
 P(Y)=\prod_{t=1}^{T} P(y_t \mid y_{<t})
-```
+$$
 
 where each token is predicted based only on previously generated tokens.
-```
 
 Advantages:
 
@@ -179,12 +178,12 @@ Model performance is evaluated using Exact Match (EM).
 
 A prediction is considered correct only if the generated SQL query exactly matches the reference query:
 
-```math
-EM = \frac{1}{N}\sum_{i=1}^{N} \mathbf{1}
-\left(
-\hat{y}_i = y_i
-\right)
-```
+$$
+EM=
+\frac{1}{N}
+\sum_{i=1}^{N}
+\mathbf{1}(\hat y_i = y_i)
+$$
 
 where:
 
@@ -198,12 +197,12 @@ where:
 
 Both BART and GPT-2 are optimized using token-level cross-entropy loss:
 
-```math
+$$
 \mathcal{L}
 =
 -\sum_{t=1}^{T}
-\log P(y_t \mid y_{<t}, X)
-```
+\log P(y_t \mid y_{<t},X)
+$$
 
 Lower loss values indicate better alignment between generated SQL tokens and the ground-truth query.
 
