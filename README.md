@@ -282,14 +282,12 @@ This project is licensed under the MIT License.
 
 M.Sc. Student, University of Tehran
 
-Research Interests:
+Research Assistant @ Social Networks Lab
 
-* Natural Language Processing
-* Large Language Models
-* Text-to-SQL Systems
-* Information Retrieval
-* Agentic AI
-* Retrieval-Augmented Generation
+**Research Interests:** NLP, Large Language Models (LLMs), Agentic AI, Retrieval-Augmented Generation (RAG), Information Retrieval
+
+📧 [farzadjannati@ut.ac.ir](mailto:farzadjannati@ut.ac.ir) | 💻 [github.com/farzadjannati](https://github.com/farzadjannati) | 💼 [linkedin.com/in/farzadjannati](https://www.linkedin.com/in/farzadjannati)
+
 
 ---
 
