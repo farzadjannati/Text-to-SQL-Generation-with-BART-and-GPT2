@@ -131,7 +131,7 @@ BART is based on a denoising sequence-to-sequence pretraining strategy combining
 The model is trained by maximizing the conditional likelihood of the target SQL sequence:
 
 $$
-P(Y|X)=\prod_{t=1}^{T} P(y_t \mid y_{<t},X)
+P(Y|X)=\prod_{t=1}^{T} P(y_t \mid y_{<t}, X)
 $$
 
 where:
@@ -139,7 +139,7 @@ where:
 * \(X\) denotes the input question and schema.
 * \(Y\) represents the target SQL query.
 * \(y_t\) is the token generated at step \(t\).
-```
+
 ---
 
 ## GPT-2 (Decoder-Only)
@@ -179,10 +179,7 @@ Model performance is evaluated using Exact Match (EM).
 A prediction is considered correct only if the generated SQL query exactly matches the reference query:
 
 $$
-EM=
-\frac{1}{N}
-\sum_{i=1}^{N}
-\mathbf{1}(\hat y_i = y_i)
+EM=\frac{1}{N}\sum_{i=1}^{N}\mathbb{I}(\hat{y}_i=y_i)
 $$
 
 where:
@@ -198,10 +195,7 @@ where:
 Both BART and GPT-2 are optimized using token-level cross-entropy loss:
 
 $$
-\mathcal{L}
-=
--\sum_{t=1}^{T}
-\log P(y_t \mid y_{<t},X)
+\mathcal{L}=-\sum_{t=1}^{T}\log P(y_t \mid y_{<t},X)
 $$
 
 Lower loss values indicate better alignment between generated SQL tokens and the ground-truth query.
@@ -288,18 +282,6 @@ conda activate text2sql
 ```bash
 pip install -r requirements.txt
 ```
-
----
-
-# 📊 Expected Outcomes
-
-The project demonstrates:
-
-* Practical Text-to-SQL generation
-* Schema-aware SQL synthesis
-* Comparison of Transformer architectures
-* Impact of Encoder–Decoder modeling on structured generation
-* Evaluation of SQL generation quality using Exact Match metrics
 
 ---
 
